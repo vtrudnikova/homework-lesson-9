@@ -1,8 +1,8 @@
-package com.demoqa.pages;
+package tests.com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.demoqa.components.Calendar;
 import io.qameta.allure.Step;
+import tests.com.demoqa.components.Calendar;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;

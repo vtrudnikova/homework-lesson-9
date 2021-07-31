@@ -1,4 +1,4 @@
-package com.demoqa.components;
+package tests.com.demoqa.components;
 
 import com.codeborne.selenide.Selenide;
 
