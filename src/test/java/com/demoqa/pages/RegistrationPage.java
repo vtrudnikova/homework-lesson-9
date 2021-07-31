@@ -3,7 +3,6 @@ package com.demoqa.pages;
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.components.Calendar;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -36,36 +35,43 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Ввести номер телефона")
     public RegistrationPage enterMobilePhone(String mobilePhone) {
         $("#userNumber").setValue(mobilePhone);
         return this;
     }
 
+    @Step("Указать дату рождения")
     public RegistrationPage selectDatOfBirth(String day, String month, String year) {
         calendar.setDate(day, month, year);
         return this;
     }
 
+    @Step("Ввести номер телефона")
     public RegistrationPage selectSubject(String subject) {
         $("#subjectsInput").setValue(subject).pressEnter();
         return this;
     }
 
+    @Step("Выбрать хобби")
     public RegistrationPage selectHobbies(String hobbies) {
         $("#hobbiesWrapper").$(byText(hobbies)).click();
         return this;
     }
 
+    @Step("Загрузить фото")
     public RegistrationPage uploadPicture(String nameFile) {
         $("#uploadPicture").uploadFromClasspath(nameFile);
         return this;
     }
 
+    @Step("Ввести адресс")
     public RegistrationPage enterAddress(String address) {
         $("#currentAddress").setValue(address);
         return this;
     }
 
+    @Step("Выбрать страну и город")
     public RegistrationPage selectStateAndCity(String state, String city) {
         $("#stateCity-wrapper").$(byText("Select State")).scrollTo().click();
         $("#state").$(byText(state)).click();
@@ -74,15 +80,18 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Нажать Отправить")
     public RegistrationPage pressSubmit() {
         $("#submit").click();
         return this;
     }
 
+    @Step("Проверить финальное сообщение Thanks for submitting the form")
     public void checkResultsTitle() {
         modal.$(".modal-title").shouldHave(text("Thanks for submitting the form"));
     }
 
+    @Step("Проверить форму")
     public RegistrationPage checkForm(String value) {
         modal.$(".table-responsive").shouldHave(text(value));
         return this;

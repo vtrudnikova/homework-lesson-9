@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static io.qameta.allure.Allure.step;
+
 public class RegistrationPageTest {
     RegistrationPage registrationPage = new RegistrationPage();
     static Faker faker = new Faker();
@@ -41,29 +43,36 @@ public class RegistrationPageTest {
 
     @Test
     void registerUser() {
-        registrationPage.openRegistrationPage();
-        registrationPage.enterFirstNameAndLastName(firstName, lastName)
-                .enterEmail(emailAddress)
-                .selectGender(gender)
-                .enterMobilePhone(mobilePhone)
-                .selectDatOfBirth(day, month, year)
-                .selectSubject(subject)
-                .selectHobbies(hobbies)
-                .uploadPicture(fileName)
-                .enterAddress(address)
-                .selectStateAndCity(state, city);
-        registrationPage.pressSubmit();
-
-        registrationPage.checkResultsTitle();
-        registrationPage.checkForm(firstName + " " + lastName)
-                .checkForm(emailAddress)
-                .checkForm(gender)
-                .checkForm(mobilePhone)
-                .checkForm(day + " " + month + "," + year)
-                .checkForm(subject)
-                .checkForm(hobbies)
-                .checkForm(fileName)
-                .checkForm(address)
-                .checkForm(state + " " + city);
+        step("Открыть страницу с формой регистрации", () -> {
+            registrationPage.openRegistrationPage();
+        });
+        step("Заполнить форму регистрации", () -> {
+            registrationPage.enterFirstNameAndLastName(firstName, lastName)
+                    .enterEmail(emailAddress)
+                    .selectGender(gender)
+                    .enterMobilePhone(mobilePhone)
+                    .selectDatOfBirth(day, month, year)
+                    .selectSubject(subject)
+                    .selectHobbies(hobbies)
+                    .uploadPicture(fileName)
+                    .enterAddress(address)
+                    .selectStateAndCity(state, city);
+        });
+        step("Отправить заполненную форму регистрации", () -> {
+            registrationPage.pressSubmit();
+        });
+        step("Проверить поля", () -> {
+            registrationPage.checkResultsTitle();
+            registrationPage.checkForm(firstName + " " + lastName)
+                    .checkForm(emailAddress)
+                    .checkForm(gender)
+                    .checkForm(mobilePhone)
+                    .checkForm(day + " " + month + "," + year)
+                    .checkForm(subject)
+                    .checkForm(hobbies)
+                    .checkForm(fileName)
+                    .checkForm(address)
+                    .checkForm(state + " " + city);
+        });
     }
 }
