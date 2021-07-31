@@ -1,18 +1,13 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import helpers.Attach;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import tests.com.demoqa.pages.RegistrationPage;
 
 import static io.qameta.allure.Allure.step;
 
-public class RegistrationPageTest {
+public class RegistrationPageTest extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     static Faker faker = new Faker();
@@ -31,27 +26,6 @@ public class RegistrationPageTest {
     public String address = faker.address().fullAddress();
     public String state = "NCR";
     public String city = "Gurgaon";
-
-    @BeforeAll
-    static void setup() {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-
-        Configuration.browserCapabilities = capabilities;
-        Configuration.startMaximized = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.startMaximized = true;
-    }
-
-    @AfterEach
-    public void tearDown() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-    }
 
     @Test()
     @DisplayName("Регистрация пользователя")
