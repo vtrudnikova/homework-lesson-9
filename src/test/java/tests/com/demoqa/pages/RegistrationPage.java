@@ -65,7 +65,7 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("Ввести адресс")
+    @Step("Ввести адрес")
     public RegistrationPage enterAddress(String address) {
         $("#currentAddress").setValue(address);
         return this;
