@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.RegistrationPage;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -41,7 +42,8 @@ public class RegistrationPageTest {
         Configuration.startMaximized = true;
     }
 
-    @Test
+    @Test()
+    @DisplayName("Регистрация пользователя")
     void registerUser() {
         step("Открыть страницу с формой регистрации", () -> {
             registrationPage.openRegistrationPage();
