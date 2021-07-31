@@ -2,6 +2,8 @@ package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.components.Calendar;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -12,23 +14,23 @@ public class RegistrationPage {
     private SelenideElement modal = $("[role=dialog]");
     private Calendar calendar = new Calendar();
 
-
+    @Step("Открыть страницу регистрации")
     public void openRegistrationPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
     }
-
+    @Step("Ввести имя/фамилию")
     public RegistrationPage enterFirstNameAndLastName(String firstName, String lastName) {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         return this;
     }
-
+    @Step("Ввести email")
     public RegistrationPage enterEmail(String email) {
         $("#userEmail").setValue(email);
         return this;
     }
-
+    @Step("Выбрать пол")
     public RegistrationPage selectGender(String gender) {
         $("#genterWrapper").$(byText(gender)).click();
         return this;

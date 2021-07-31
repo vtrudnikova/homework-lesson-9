@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.13.9",
+def allureVersion = "2.14.0",
     selenideVersion = "5.23.0",
     junitVersion = "5.7.2"
 
@@ -20,7 +20,6 @@ allure {
         version = allureVersion
     }
 }
-
 dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
